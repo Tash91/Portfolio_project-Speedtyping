@@ -4,7 +4,7 @@ from textwrap import wrap
 
 window = tk.Tk()
 
-window.geometry("1500x1000")
+window.geometry("1000x1000")
 
 window.title("How fast can you type")
 
@@ -12,30 +12,53 @@ text_to_write = 'far far awaybehind the word mountains far from the countries vo
 
 wrapped_text='\n'.join(wrap(text_to_write, width=50))
 
-game_title = tk.Label(text="How  fast can you type\n Press the start button, start typing\n You will have 60 seconds to type as many works accurately\n good luck")
-game_title.grid(column=2, row=0)
+frame_1 =tk.Frame(window).grid(column=2, row=1) #title and exerpt 
 
-excerpt_text = tk.Text(window, width=80, height=17)#remember to change column order 
+frame_2 =tk.Frame(window).grid(column=2, row=2) #enter label and text 
 
-excerpt_text.grid(column=2, row=2) 
+frame_3 =tk.Frame(window).grid(column=2, row=3) #results button and results display 
+
+
+game_title = tk.Label(frame_1,text="How  fast can you type\n Press the start button, start typing\n You will have 60 seconds to type as many works accurately\n good luck")
+#game_title.grid(column=1, row=0)
+game_title.grid()
+
+excerpt_text = tk.Text(frame_1, width=80, height=17)#remember to change column order 
+
+#excerpt_text.grid(column=1, row=2) 
+excerpt_text.grid()
+
 
 excerpt_text.insert(tk.END, wrapped_text)
 
-enter_label = tk.Label(text="Enter here").grid(column=2, row=3)
+enter_label = tk.Label( frame_2,text="Enter here")
+#enter_label.grid(column=1, row=3)
+enter_label.grid()
 
-enter_text = tk.Text(window, width=50, height=5).grid(column=2, row=4) #remember to change column order 
-
-results_label = tk.Label(text="Results").grid(column=4, row=1)
-
-results_text = tk.Text(window, width=50, height=5).grid(column=4, row=3) #remember to change column order 
+enter_text = tk.Text(frame_2, width=50, height=5)
+#enter_text.grid(column=1, row=4) #remember to change column order 
+enter_text.grid()
 
 def start_typing ():
     pass
+
+
+start_button = tk.Button(frame_2, text ="Start", command = start_typing)
+#start_button.grid(column=0, row=2)
+start_button.grid()
+
+
 def get_results ():
     pass
+results_button = tk.Button(frame_3,text='Get results', command=get_results)
+#results_button.grid(column=1, row=5)
+results_button.grid()
 
-start_button = tk.Button( text ="Start", command = start_typing).grid(column=1, row=0)
+results_text = tk.Text(frame_3, width=50, height=5)
+#results_text.grid(column=1, row=6) #remember to change column order 
+results_text.grid()
 
-results_button = tk.Button(text='Get results', command=get_results).grid(column=4, row=2)
+
+
 
 window.mainloop()
