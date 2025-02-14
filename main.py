@@ -4,60 +4,64 @@ from textwrap import wrap
 
 window = tk.Tk()
 
-window.geometry("1000x1000")
+window.geometry("1200x1000")
 
 window.title("How fast can you type")
 
-text_to_write = 'far far awaybehind the word mountains far from the countries vokalia and consonantiathere live the blind texts\n separated they live in bookmarks grove right at the coast of the semanticsa large language ocean a\n small river named duden flows by their place and supplies it with the necessary regelialia it is a paradisematic countryin which roasted parts of sentences fly into your mouth even the all-powerful pointing has no control about the blind texts it is an almost unorthographic life one day however a small line of blind text by the name of lorem ipsum decided to leave for the far world of grammar the big oxmox advised her not to do sobecause there were thousands of bad commaswild question marks and devious semikolibut the little blind text didn’t listen'
+text_to_write = 'the european languages are members of the same family their separate existence is a myth for science  music  sport  etc  europe uses the same vocabulary the languages only differ in their grammar  their pronunciation and their \nmost common words everyone realizes why a new common language would be desirable  one could refuse to pay expensive translators to achieve this  it would be necessary to have uniform grammar  pronunciation and more common words if several languages coalesce  the grammar of the resulting language is more simple and regular than that of the individual languages the new common language will be more simple and regular than the existing european languages it will be as simple as occidental in fact  it will be occidental to an english person  it will seem like simplified english  as a sceptical cambridge friend of mine told me what occidental is the european languages are members of the same family their separate existence is a myth for science  music  sport  etc  europe uses the same vocabulary the languages only differ in their grammar  their pronunciation and their most common words everyone realizes why a new common language would be desirable  one could refuse to pay expensive translators '
 
 wrapped_text='\n'.join(wrap(text_to_write, width=50))
 
-frame_1 =tk.Frame(window).grid(column=2, row=1) #title and exerpt 
+# frame_1 =tk.Frame(window).grid(column=2, row=1) #title and exerpt 
 
-frame_2 =tk.Frame(window).grid(column=2, row=2) #enter label and text 
+# frame_2 =tk.Frame(window).grid(column=2, row=2) #enter label and text and start button 
 
-frame_3 =tk.Frame(window).grid(column=2, row=3) #results button and results display 
+# frame_3 =tk.Frame(window).grid(column=2, row=3) #results button and results display 
 
 
-game_title = tk.Label(frame_1,text="How  fast can you type\n Press the start button, start typing\n You will have 60 seconds to type as many works accurately\n good luck")
-#game_title.grid(column=1, row=0)
-game_title.grid()
+game_title = tk.Label(text="How  fast can you type\n Press the start button, start typing\n You will have 60 seconds to type as many works accurately\n good luck",
+bg="turquoise")
 
-excerpt_text = tk.Text(frame_1, width=80, height=17)#remember to change column order 
+game_title.grid(column=1, row=0, pady=10)
 
-#excerpt_text.grid(column=1, row=2) 
-excerpt_text.grid()
+
+excerpt_text = tk.Text(window, width=80, height=26)
+
+excerpt_text.grid(column=1, row=2, pady=10, padx=50) 
 
 
 excerpt_text.insert(tk.END, wrapped_text)
+excerpt_text.config(state="disabled")
 
-enter_label = tk.Label( frame_2,text="Enter here")
-#enter_label.grid(column=1, row=3)
-enter_label.grid()
+enter_label = tk.Label( window,text="Enter here", bg="yellow")
+enter_label.grid(column=1, row=5,pady=10)
 
-enter_text = tk.Text(frame_2, width=50, height=5)
-#enter_text.grid(column=1, row=4) #remember to change column order 
-enter_text.grid()
+
+enter_text = tk.Text(window, width=80, height=5)
+enter_text.grid(column=1, row=6, pady=10) 
 
 def start_typing ():
     pass
 
 
-start_button = tk.Button(frame_2, text ="Start", command = start_typing)
-#start_button.grid(column=0, row=2)
-start_button.grid()
+start_button = tk.Button(window, text ="Start", command = start_typing , bg="Yellow")
+start_button.grid(column=1, row=4, pady=10)
+
+def get_results (dummy_result=10):
+    entered_text = enter_text.get('1.0', 'end')
+    grab_exerpt_text = excerpt_text.get('1.0', 'end')
+    excerpt_text_length = len(grab_exerpt_text.split())
+    print(excerpt_text_length)#remove 
+    print( grab_exerpt_text)#remove 
+    print(entered_text)#remove 
+    results_label = tk.Label(window, text=f"You've managed to type {dummy_result} words accurately in 1 miniute")
+    results_label.grid(column=2, row=3)
+    return results_label  
 
 
-def get_results ():
-    pass
-results_button = tk.Button(frame_3,text='Get results', command=get_results)
-#results_button.grid(column=1, row=5)
-results_button.grid()
-
-results_text = tk.Text(frame_3, width=50, height=5)
-#results_text.grid(column=1, row=6) #remember to change column order 
-results_text.grid()
-
+   
+results_button = tk.Button(window,text='Get results', command=get_results, bg="green")
+results_button.grid(column=2, row=2)
 
 
 
