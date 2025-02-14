@@ -51,6 +51,10 @@ def get_results (dummy_result=10):
     entered_text = enter_text.get('1.0', 'end')
     grab_exerpt_text = excerpt_text.get('1.0', 'end')
     excerpt_text_length = len(grab_exerpt_text.split())
+    if len(entered_text.split()) == len(excerpt_text.split()):
+        pass
+    elif len(entered_text.split()) < len(excerpt_text.split()):
+        pass
     print(excerpt_text_length)#remove 
     print( grab_exerpt_text)#remove 
     print(entered_text)#remove 
