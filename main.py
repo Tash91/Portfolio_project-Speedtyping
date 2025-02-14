@@ -55,6 +55,11 @@ def get_results (dummy_result=10):
         pass
     elif len(entered_text.split()) < len(excerpt_text.split()):
         pass
+    elif len(entered_text.split()) > len(excerpt_text.split()):
+        pass
+    else:
+        print ("Invalid entry") 
+        pass
     print(excerpt_text_length)#remove 
     print( grab_exerpt_text)#remove 
     print(entered_text)#remove 
