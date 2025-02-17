@@ -12,12 +12,6 @@ text_to_write = 'the european languages are members of the same family their sep
 
 wrapped_text='\n'.join(wrap(text_to_write, width=50))
 
-# frame_1 =tk.Frame(window).grid(column=2, row=1) #title and exerpt 
-
-# frame_2 =tk.Frame(window).grid(column=2, row=2) #enter label and text and start button 
-
-# frame_3 =tk.Frame(window).grid(column=2, row=3) #results button and results display 
-
 
 game_title = tk.Label(text="How  fast can you type\n Press the start button, start typing\n You will have 60 seconds to type as many works accurately\n good luck",
 bg="turquoise")
@@ -47,23 +41,59 @@ def start_typing ():
 start_button = tk.Button(window, text ="Start", command = start_typing , bg="Yellow")
 start_button.grid(column=1, row=4, pady=10)
 
-def get_results (dummy_result=10):
-    entered_text = enter_text.get('1.0', 'end')
+def get_results ():
+    grab_entered_text = enter_text.get('1.0', 'end')
     grab_exerpt_text = excerpt_text.get('1.0', 'end')
-    excerpt_text_length = len(grab_exerpt_text.split())
-    if len(entered_text.split()) == len(excerpt_text.split()):
-        pass
-    elif len(entered_text.split()) < len(excerpt_text.split()):
-        pass
-    elif len(entered_text.split()) > len(excerpt_text.split()):
-        pass
+
+    exerpt_list = list(grab_exerpt_text.split())
+    entered_list = list(grab_entered_text.split())
+
+    excerpt_text_length = len(exerpt_list)
+    entered_text_length = len(entered_list)
+
+    words_captured =[]
+    count = 0 
+
+    if len(entered_list) == len(exerpt_list):
+        for x in entered_list:
+            index_x = entered_list.index(x)
+            if exerpt_list[index_x] == x:
+                words_captured.append(x) # remove this or the count 
+                count += 1
+            print (x)
+        print(count)
+        print(words_captured)
+       
+        
+    elif len(entered_list) < len(exerpt_list):
+        sample_exerpt_list = exerpt_list[0:len(entered_list)]
+        for x in entered_list:
+            index_x = entered_list.index(x)
+            if sample_exerpt_list[index_x] == x:
+                words_captured.append(x) # remove this or the count 
+                count += 1
+            print (x)
+        print(count)
+        print(words_captured)
+    
+
+    elif len(entered_list) > len(exerpt_list):
+        sample_entered_list = entered_list[0:len(exerpt_list)]
+        for x in sample_entered_list:
+            index_x = sample_entered_list.index(x)
+            if exerpt_list[index_x] == x:
+                words_captured.append(x) # remove this or the count 
+                count += 1
+            print (x)
+        print(count)
+        print(words_captured)
+
+
     else:
-        print ("Invalid entry") 
-        pass
-    print(excerpt_text_length)#remove 
-    print( grab_exerpt_text)#remove 
-    print(entered_text)#remove 
-    results_label = tk.Label(window, text=f"You've managed to type {dummy_result} words accurately in 1 miniute")
+        print ("Invalid submission") 
+     
+
+    results_label = tk.Label(window, text=f"You've managed to type {count} words accurately in 1 miniute")
     results_label.grid(column=2, row=3)
     return results_label  
 
