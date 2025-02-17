@@ -13,7 +13,7 @@ text_to_write = 'the european languages are members of the same family their sep
 wrapped_text='\n'.join(wrap(text_to_write, width=50))
 
 
-game_title = tk.Label(text="How  fast can you type\n Press the start button, start typing\n You will have 60 seconds to type as many works accurately\n good luck",
+game_title = tk.Label(text="How  fast can you type\n Press the start button, start typing\n You will have 60 seconds to type as many works accurately\n Good luck",
 bg="turquoise")
 
 game_title.grid(column=1, row=0, pady=10)
@@ -34,9 +34,13 @@ enter_label.grid(column=1, row=5,pady=10)
 enter_text = tk.Text(window, width=80, height=5)
 enter_text.grid(column=1, row=6, pady=10) 
 
-def start_typing ():
-    pass
+def stop_typing ():
+    enter_text.config(state="disabled")
 
+
+def start_typing ():
+    enter_text.after(60000, stop_typing )
+        
 
 start_button = tk.Button(window, text ="Start", command = start_typing , bg="Yellow")
 start_button.grid(column=1, row=4, pady=10)
@@ -48,9 +52,6 @@ def get_results ():
     exerpt_list = list(grab_exerpt_text.split())
     entered_list = list(grab_entered_text.split())
 
-    excerpt_text_length = len(exerpt_list)
-    entered_text_length = len(entered_list)
-
     words_captured =[]
     count = 0 
 
@@ -58,7 +59,7 @@ def get_results ():
         for x in entered_list:
             index_x = entered_list.index(x)
             if exerpt_list[index_x] == x:
-                words_captured.append(x) # remove this or the count 
+                words_captured.append(x) #keep on for terminal check
                 count += 1
             print (x)
         print(count)
@@ -70,7 +71,7 @@ def get_results ():
         for x in entered_list:
             index_x = entered_list.index(x)
             if sample_exerpt_list[index_x] == x:
-                words_captured.append(x) # remove this or the count 
+                words_captured.append(x) #keep on for terminal check
                 count += 1
             print (x)
         print(count)
@@ -82,7 +83,7 @@ def get_results ():
         for x in sample_entered_list:
             index_x = sample_entered_list.index(x)
             if exerpt_list[index_x] == x:
-                words_captured.append(x) # remove this or the count 
+                words_captured.append(x) #keep on for terminal check
                 count += 1
             print (x)
         print(count)
